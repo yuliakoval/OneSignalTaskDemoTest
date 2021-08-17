@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using OneSignalTask.Domain.Models;
 using OneSignalTask.Services.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace OneSignalTask.Controllers
