@@ -14,6 +14,13 @@ namespace OneSignalTask.Services.Interfaces
         Task<IEnumerable<App>> GetAppsAsync();
 
         /// <summary>
+        /// Gets the App via sending GET async request to the OneSignal.
+        /// </summary>
+        /// <param name="id">The unique identifier of the App.</param>
+        /// <returns>The App if the request was successful, else throws an exception.</returns>
+        Task<App> GetAppAsync(string id);
+
+        /// <summary>
         /// Gets the created App via sending POST async request to the OneSignal.
         /// </summary>
         /// <param name="app">The new App.</param>

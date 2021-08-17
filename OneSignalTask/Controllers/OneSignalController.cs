@@ -43,8 +43,7 @@ namespace OneSignalTask.Controllers
                 return BadRequest();
             }
 
-            IEnumerable<App> apps = await _oneSignalService.GetAppsAsync();
-            var app = apps.FirstOrDefault(m => m.Id.Equals(id));
+            App app = await _oneSignalService.GetAppAsync(id);
 
             if (app == null)
             {
@@ -104,8 +103,7 @@ namespace OneSignalTask.Controllers
                 return BadRequest();
             }
 
-            IEnumerable<App> apps = await _oneSignalService.GetAppsAsync();
-            App app = apps.FirstOrDefault(m => m.Id.Equals(id));
+            App app = await _oneSignalService.GetAppAsync(id);
 
             if (app == null)
             {
@@ -124,7 +122,7 @@ namespace OneSignalTask.Controllers
         /// <returns>Index view if App was updated, else Edit view with entered App's parameters.</returns>
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(App app)
+        public async Task<IActionResult> UpdateAsync(App app)
         {
             if (ModelState.IsValid && app.Name != null)
             {

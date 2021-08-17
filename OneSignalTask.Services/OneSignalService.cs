@@ -43,6 +43,30 @@ namespace OneSignalTask.Services
         }
 
         /// <summary>
+        /// Gets the App via sending GET async request to the OneSignal.
+        /// </summary>
+        /// <param name="id">The unique identifier of the App.</param>
+        /// <returns>The App if the request was successful, else throws an exception.</returns>
+        public async Task<App> GetAppAsync(string id)
+        {
+            RestRequest request = new RestRequest(_oneSignalApiConfig.BaseUrl, Method.GET);
+            request.Resource += id;
+            request.AddHeader("Content-Type", "application/json");
+            request.AddHeader("Authorization", "Basic " + _oneSignalApiConfig.ApiKey);
+
+            IRestResponse<App> response = await _restClient.ExecuteTaskAsync<App>(request);
+
+            if (response.IsSuccessful)
+            {
+                return JsonConvert.DeserializeObject<App>(response.Content);
+            }
+            else
+            {
+                throw new Exception(response.ErrorMessage);
+            }
+        }
+
+        /// <summary>
         /// Gets the created App via sending POST async request to the OneSignal.
         /// </summary>
         /// <param name="app">The new App.</param>

@@ -77,8 +77,8 @@ namespace OneSignalTask.Test
         public async Task OneSignalController_Details_ResturnsAViewResult_WithAnApp()
         {
             //Arrange
-            _mockOneSignalService.Setup(s => s.GetAppsAsync()).ReturnsAsync(GetTestApps());
             var appId = "test1-id";
+            _mockOneSignalService.Setup(s => s.GetAppAsync(appId)).ReturnsAsync(new App { Id = appId });
 
             //Act
             var result = await oneSignalController.Details(appId);
@@ -165,8 +165,8 @@ namespace OneSignalTask.Test
         public async Task OneSignalController_EditGet_ResturnsAViewResult_WithAnApp()
         {
             //Arrange
-            _mockOneSignalService.Setup(s => s.GetAppsAsync()).ReturnsAsync(GetTestApps());
             var appId = "test1-id";
+            _mockOneSignalService.Setup(s => s.GetAppAsync(appId)).ReturnsAsync(new App { Id = appId });
 
             //Act
             var result = await oneSignalController.Edit(appId);
@@ -189,7 +189,7 @@ namespace OneSignalTask.Test
             _mockOneSignalService.Setup(s => s.UpdateAppAsync(editedApp));
 
             //Act
-            var result = await oneSignalController.Edit(editedApp);
+            var result = await oneSignalController.UpdateAsync(editedApp);
 
             //Assert
             var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
@@ -209,7 +209,7 @@ namespace OneSignalTask.Test
             };
 
             //Act
-            var result = await oneSignalController.Edit(editedApp);
+            var result = await oneSignalController.UpdateAsync(editedApp);
 
             //Assert
             var viewResult = Assert.IsType<ViewResult>(result);
