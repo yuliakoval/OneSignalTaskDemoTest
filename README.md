@@ -21,3 +21,7 @@ Readonly credentials
 Email: readonly@test.com
 
 Password: readonly
+
+## Logging
+
+The application supports logging.
