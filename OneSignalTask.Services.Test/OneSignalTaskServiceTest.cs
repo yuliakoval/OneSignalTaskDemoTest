@@ -43,6 +43,36 @@ namespace OneSignalTask.Services.Test
         }
 
         [Fact]
+        public async Task OneSignalService_GetAppAsync_ShouldReturnHttpStatusCodeOK()
+        {
+            //Arrange
+            _mockRestClient.Setup(c => c.ExecuteTaskAsync<App>(It.IsAny<IRestRequest>())).ReturnsAsync(_mockRestResponseApp.Object);
+            _mockRestResponseApp.SetupGet(r => r.StatusCode).Returns(HttpStatusCode.OK);
+            _mockRestResponseApp.SetupGet(s => s.IsSuccessful).Returns(true);
+            _mockRestResponseApp.SetupGet(s => s.Content).Returns("");
+
+            //Act
+            await oneSignalService.GetAppAsync("testId");
+
+            //Assert
+            _mockRestClient.Verify(c => c.ExecuteTaskAsync<App>(It.IsAny<IRestRequest>()), Times.Once);
+
+        }
+
+        [Fact]
+        public async Task OneSignalService_GetAppAsync_ShouldReturnError()
+        {
+            //Arrange
+            _mockRestClient.Setup(c => c.ExecuteTaskAsync<App>(It.IsAny<IRestRequest>())).ReturnsAsync(_mockRestResponseApp.Object);
+            _mockRestResponseApp.SetupGet(r => r.StatusCode).Returns(HttpStatusCode.NotFound);
+            _mockRestResponseApp.SetupGet(s => s.IsSuccessful).Returns(false);
+            _mockRestResponseApp.SetupGet(s => s.ErrorMessage).Returns("Error");
+
+            //Assert
+            Assert.ThrowsAsync<Exception>(() => oneSignalService.GetAppAsync("testId"));
+        }
+
+        [Fact]
         public async Task OneSignalService_CreateAppAsync_ShouldReturnApp()
         {
             //Arrange
