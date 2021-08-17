@@ -1,5 +1,5 @@
 # OneSignalTaskDemoTest
-OneSignalTaskDemoTest is the ASP.NET MVC project.
+OneSignalTaskDemoTest is the ASP.NET Core Web App (Model-View-Controller) project.
 # Steps to run application
 Open OneignalTask->appsettings.Development.json and change:
   1) Set Server in the DefaultConnection and in the "Serilog"->"connectionString" instead of "serverName";
@@ -24,4 +24,8 @@ Password: readonly
 
 ## Logging
 
-The application supports logging.
+The application supports logging via using Serilog.
+
+## Unit Tests
+
+XUnit is used for unit testing.
