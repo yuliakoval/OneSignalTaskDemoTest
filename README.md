@@ -24,4 +24,8 @@ Password: readonly
 
 ## Logging
 
-The application supports logging.
+The application supports logging via using Serilog.
+
+## Unit Tests
+
+XUnit is used for unit testing.
