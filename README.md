@@ -2,7 +2,7 @@
 OneSignalTaskDemoTest is the ASP.NET MVC project.
 # Steps to run application
 Open OneignalTask->appsettings.Development.json and change:
-  1) Set Server in the DefaultConnection instead of "serverName";https://github.com/yuliakoval/OneSignalTaskDemoTest
+  1) Set Server in the DefaultConnection and in the "Serilog"->"connectionString" instead of "serverName";
   2) Set your OneSignal ApiKey in the OneSignalOptionsApi instead of "apiKey";
 # Authentication and authorization
 There are 2 roles Admin and Readonly.
